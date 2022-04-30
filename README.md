@@ -2,25 +2,23 @@
 
 Repository privé de la SAE21
 
-Lors de cette SAE je me suis ocuper de l'organisation, de la repartition des tahces et de ma partie a moi. Ma pertie consite a realiser le shemat detailler du reseau que l'on vas constituer.
+Lors de cette SAE je me suis occupé de l'organisation, de la répartition des tâches et de ma partie a moi. Ma partie consiste à réaliser le schéma détaillé du réseau que l'on va constituer.
 
--------
-
-## Resaux resaliser
+## Réseau réalisé
 
 ![img_reseau](reseaux_v3.png)
 
-Ce shemat presante l'adresage choisit, et comment est organiser la repartietion des VLAN.
+Ce schéma présente l'adressage choisi, et comment est organisée la répartition des VLAN.
 
-En detail :
+En détail :
 
-* Les VLAN sont en /24 avec le troisiemme octet qui corespond au nom du VLAN
-* Le DHCP se trouve sur le routeur ce qui permet d'eviter de faire tourner une machine de plus sur le resau
-* La DMZ est sur un adressage priver sans DHCP car avec seulement 3 machine les configurer maniellement est plus simple
+* Les VLAN sont en /24 avec le troisième octet qui correspond au nom du VLAN.
+* Le DHCP se trouve sur le routeur ce qui permet d'éviter de faire tourner une machine de plus sur le réseau.
+* La DMZ est sur un adressage privé sans DHCP car avec seulement 3 machines, les configurer manuellement est plus simple.
 
-## Configurartion du routeur
+## Configuration du routeur
 
-Voici la configuration du routeur que j'ais realiser :
+Voici la configuration du routeur que j'ai realisée (cette partie ne contient que les inforamtion realtive au "firewall", la configuration complete est [ici](./SAVE_router_MikroTik/conf_text_version.txt))
 
     [admin@MikroTik] /ip firewall> export 
     # apr/30/2022 21:20:43 by RouterOS 6.49.6
@@ -54,76 +52,77 @@ Voici la configuration du routeur que j'ais realiser :
     add action=dst-nat chain=dstnat dst-port=53 in-interface=ether1 protocol=udp src-port=\
         !54-61000 to-addresses=192.168.40.53 to-ports=53
 
-En resumer, elle permet du D-NAT pour les serveurs DNS et WEB_DMZ, elle filtre aussi les paquet entrant est sortant de l'entreprise.
+En résumé, elle permet du D-NAT pour les serveurs DNS et WEB_DMZ, elle filtre aussi les paquets entrants et sortants de l'entreprise.
 
 -------
 
 ## Page WEB
 
-Deplus j'ais realiser la "magnifique" page WEB pour notre entreprise.
+De plus j'ai realisé la "magnifique" page WEB pour notre entreprise.
 
 -------
-
-## Repartition des taches
+## Répartition des tâches
 
 * DHCP / WEB-Intranet / ACL -> VALENTIN
-* DMZ / shemat -> reseaux MATHIEU
+* DMZ / schéma -> réseau MATHIEU
 * DNS / WEB -> LUIGI
 
 -------
 
 ## Journal de bord
 
-24 / 03 -> TD presentation
+24 / 03 -> TD présentation.
 
-25 / 03 -> decouverte du sujet
+25 / 03 -> découverte du sujet.
 
-28 / 03 -> debut de travaille sur nos partie respective
+28 / 03 -> début de travail sur nos parties respectives.
 
-29 / 03 -> creation des git (pour moi creation du schéma)
+29 / 03 -> création des git (pour moi creation du schéma).
 
-04 / 04 -> suite du travaille
+04 / 04 -> suite du travail.
 
-11 / 04 -> TP -> ralisation du GNS3 des serv par Valentin et shemet fini en .doi par Mathieu
+11 / 04 -> TP -> réalisation du GNS3 des serveurs par Valentin et schéma fini en .dio par Mathieu.
 
-14 / 04 -> travaille continuer
+14 / 04 -> travail continué.
 
-15 / 04 -> decouverte et création des deocerfile
+15 / 04 -> découverte et création des DockerFiles.
+
+Les dernieres séance m'on permit de finaliser les differantes configurations.
 
 -------
 
-## Notes prise le long de cette SAE
+## Notes prises le long de cette SAE
 
 dot1q -> trunk
 
-Deux type de nat
+Deux type de NAT
 
-source nat (snat)
+source NAT (SNAT)
 
-    trame traduite par le routeur au bieeaux de l'ip src
-    le serv parle au routeur 
-    il suit les numereau de cinexion
-    on ne le voi pas au niveaux ip
+    TRAM traduite par le routeur avec une modification au niveau de l'IP source
+    Le serveur parle au routeur 
+    Il suit les numéros de connexion
+    On ne le voit pas au niveau IP
 
-Dnat :
+DNAT :
 
-    on vas dnat un port
-    ex tout ce quie est connecter au port 80 vas aller jusqu'au serv web
+    On va DNAT un port;
+    Exemple : tout ce qui est connecté au port 80 va aller jusqu'au serveurs WEB.
 
-deux dns un recurcif et un publique
+Deux DNS : un récursif et un public.
 
-metre sur lme dns pour le WEB-intra l'ip priver
+Mettre sur le DNS pour le WEB-intra l'ip privé.
 
-DMZ selon r/mikrotik
+DMZ selon r/mikrotik : 
 
-On refue toute les conection de l'exterieur sur le routeur
-on vas autoriser les connexion au port 80 qui vas etre rediriger ver le serv web
-on vas autoriser les conexion au pot 56 qui vas etre rediriger vers le serv DNS
-autorize tout ce qui est establich
-et on filtre les new
-de mmeme pour les eserv pour les update
-il faut aussi que je full nat le mikrotik
+On refuse touteq les connexions de l'extérieur sur le routeur.
+On va autoriser les connexions au port 80 qui vont être redirigé vers le serveur WEB.
+On va autoriser les connexions au port 56 qui vont être redirigées vers le serveur DNS.
+"Autorized" tout ce qui est "established".
+Et on filtre les "new".
+De même pour les serveurs pour les "updates".
+Il faut aussi que je full NAT le Mikrotik.
 
 NAT :
 
-cree un liste pour chaque sous interface et on leur met le nat pour chacune d'entrelle
+Créer un liste pour chaque sous interface et mettre le NAT pour chacune d'entre elles.
