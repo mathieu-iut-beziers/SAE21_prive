@@ -55,6 +55,12 @@ Voici la configuration du routeur que j'ais realiser :
 En resumer, elle permet du D-NAT pour les serveurs DNS et WEB_DMZ, elle filtre aussi les paquet entrant est sortant de l'entreprise.
 
 -------
+
+## Page WEB
+
+Deplus j'ais realiser la "magnifique" page WEB pour notre entreprise.
+
+-------
 ## Repartition des taches
 
 * DHCP / WEB-Intranet / ACL -> VALENTIN
@@ -118,6 +124,3 @@ il faut aussi que je full nat le mikrotik
 NAT :
 
 cree un liste pour chaque sous interface et on leur met le nat pour chacune d'entrelle
-
-
-
