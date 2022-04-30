@@ -4,6 +4,8 @@ Repository privé de la SAE21
 
 Lors de cette SAE je me suis ocuper de l'organisation, de la repartition des tahces et de ma partie a moi. Ma pertie consite a realiser le shemat detailler du reseau que l'on vas constituer.
 
+-------
+
 ## Resaux resaliser
 
 ![img_reseau](reseaux_v3.png)
@@ -61,6 +63,7 @@ En resumer, elle permet du D-NAT pour les serveurs DNS et WEB_DMZ, elle filtre a
 Deplus j'ais realiser la "magnifique" page WEB pour notre entreprise.
 
 -------
+
 ## Repartition des taches
 
 * DHCP / WEB-Intranet / ACL -> VALENTIN
